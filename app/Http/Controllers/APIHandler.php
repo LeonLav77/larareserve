@@ -7,11 +7,14 @@ use App\Models\User;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class APIHandler extends Controller
 {
     public function AllDates(){
-        $dates = Day::all();
+        $dates = Cache::remember('users', 5, function () {
+            return Day::all();
+        });
         return json_encode($dates);
     }
     public function specificDate(Request $request){
@@ -55,7 +58,6 @@ class APIHandler extends Controller
         $time = $request->time;
         $reservation = Reservation::where('date', $date)->where('time', $time)->get();
         return json_encode($reservation);
-    
     }
     public function userInfo(request $request){
         $id = $request->id;
