@@ -136,24 +136,38 @@
                 }
             });
         }
+        function userInfo(id){
+            $.ajax({
+                dataType: 'json',
+                url: '/userInfo',
+                type: 'get',
+                data:{
+                    id: id
+                },
+                success: function(response) {
+                    console.log(response)
+                }
+            });
+        }
     </script>
 </head>
 <body>
     <button onclick="checkIfLoggedIn();">isLoggedIn</button>
+    <button onclick="userInfo(1);">User Info</button>
     <button onclick="ajaxLogin('leonlav77@gmail.com','password');">Login</button>
     <button onclick="ajaxRegister('leonlav77@gmail.com','password','leki');">Register</button>
     <button onclick="logout();">Logout</button>
     <br>
     <br>
     <button onclick="allReservations();">ALL DATES</button>
-    <button onclick="SpecificDate('2021-10-06');">SPECIFIC DATE</button>
-    <button onclick="SpecificTermin('2021-10-06',12);">SPECIFIC DATE AND TIME</button>
+    <button onclick="SpecificDate('2021-10-15');">SPECIFIC DATE</button>
+    <button onclick="SpecificTermin('2021-10-15',12);">SPECIFIC DATE AND TIME</button>
     @if ($user)
-        <button onclick="reserveDate('2021-10-06',12,'{{$user->name}}');">RESERVE DATE</button>
+        <button onclick="reserveDate('2021-10-15',12,'{{$user->name}}');">RESERVE DATE</button>
     <br>
     <br>
-        <button onclick="myReservations('2021-10-06',12,'{{$user->name}}');">My Reservations</button>
-        <button onclick="specificReservation('2021-10-06',12);">Specific Reservation</button>
+        <button onclick="myReservations('2021-10-15',12,'{{$user->name}}');">My Reservations</button>
+        <button onclick="specificReservation('2021-10-15',12);">Specific Reservation</button>
     @endif
     <h1>HELLO</h1>
 </body>

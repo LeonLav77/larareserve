@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Day;
+use App\Models\User;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,5 +56,10 @@ class APIHandler extends Controller
         $reservation = Reservation::where('date', $date)->where('time', $time)->get();
         return json_encode($reservation);
     
+    }
+    public function userInfo(request $request){
+        $id = $request->id;
+        $user = User::where('id', $id)->get();
+        return json_encode($user);
     }
 }

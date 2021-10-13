@@ -33,5 +33,7 @@ Route::get('/myReservations',[APIHandler::class, 'myReservations']);
 
 Route::get('/specificReservation',[APIHandler::class, 'specificReservation']); 
 
+Route::get('/userInfo',[APIHandler::class, 'userInfo']); 
+
 
 require __DIR__.'/auth.php';
