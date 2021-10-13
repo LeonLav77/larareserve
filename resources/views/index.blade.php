@@ -45,7 +45,7 @@
                 }
             });
                 }
-        function reserveDate(date,time,user){
+        function reserveDate(date,time){
             console.log(user)
             $.ajax({
                 dataType: 'json',
@@ -141,9 +141,16 @@
                 dataType: 'json',
                 url: '/userInfo',
                 type: 'get',
-                data:{
-                    id: id
-                },
+                success: function(response) {
+                    console.log(response)
+                }
+            });
+        }
+        function cacheTest(){
+            $.ajax({
+                dataType: 'json',
+                url: '/cacheTest',
+                type: 'get',
                 success: function(response) {
                     console.log(response)
                 }
@@ -153,8 +160,9 @@
 </head>
 <body>
     <button onclick="checkIfLoggedIn();">isLoggedIn</button>
-    <button onclick="userInfo(1);">User Info</button>
+    <button onclick="userInfo();">User Info</button>
     <button onclick="ajaxLogin('leonlav77@gmail.com','password');">Login</button>
+    <button onclick="cacheTest();">CACHE TESTS</button>
     <button onclick="ajaxRegister('leonlav77@gmail.com','password','leki');">Register</button>
     <button onclick="logout();">Logout</button>
     <br>
@@ -163,10 +171,10 @@
     <button onclick="SpecificDate('2021-10-15');">SPECIFIC DATE</button>
     <button onclick="SpecificTermin('2021-10-15',12);">SPECIFIC DATE AND TIME</button>
     @if ($user)
-        <button onclick="reserveDate('2021-10-15',12,'{{$user->name}}');">RESERVE DATE</button>
+        <button onclick="reserveDate('2021-10-15',12);">RESERVE DATE</button>
     <br>
     <br>
-        <button onclick="myReservations('2021-10-15',12,'{{$user->name}}');">My Reservations</button>
+        <button onclick="myReservations();">My Reservations</button>
         <button onclick="specificReservation('2021-10-15',12);">Specific Reservation</button>
     @endif
     <h1>HELLO</h1>

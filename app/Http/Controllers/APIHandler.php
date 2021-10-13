@@ -12,10 +12,14 @@ use Illuminate\Support\Facades\Cache;
 class APIHandler extends Controller
 {
     public function AllDates(){
-        $dates = Cache::remember('users', 5, function () {
+        $dates = Cache::remember('allDates', 5, function () {
             return Day::all();
         });
         return json_encode($dates);
+    }
+    public function cacheTest(){
+        $value = Cache::get('allDates');
+        return json_encode($value);
     }
     public function specificDate(Request $request){
         $date = $request->date;
@@ -31,7 +35,6 @@ class APIHandler extends Controller
     public function reserveDate(Request $request){
         $date = $request->date;
         $time = $request->time;
-        $day_id = 6;
         $thatDate = Day::where('date', $date)->where('vrijeme', $time);
         $reservation = Reservation::insert([
             'user_id' => Auth::user()->id,
@@ -60,8 +63,7 @@ class APIHandler extends Controller
         return json_encode($reservation);
     }
     public function userInfo(request $request){
-        $id = $request->id;
-        $user = User::where('id', $id)->get();
+        $user = Auth::user();
         return json_encode($user);
     }
 }

@@ -39,7 +39,7 @@ class DaySeeder extends Seeder
     }
     public function run()
     {
-        for($i = 1; $i <= 960; $i++) {
+        for($i = 1; $i <= 120; $i++) {
             sleep(1);
             if(Day::latest('created_at')->first() == null){
                 DB::table('days')->insert([
