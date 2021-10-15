@@ -170,13 +170,11 @@
     <button onclick="allReservations();">ALL DATES</button>
     <button onclick="SpecificDate('2021-10-15');">SPECIFIC DATE</button>
     <button onclick="SpecificTermin('2021-10-15',12);">SPECIFIC DATE AND TIME</button>
-    @if ($user)
         <button onclick="reserveDate('2021-10-15',12);">RESERVE DATE</button>
     <br>
     <br>
         <button onclick="myReservations();">My Reservations</button>
         <button onclick="specificReservation('2021-10-15',12);">Specific Reservation</button>
-    @endif
     <h1>HELLO</h1>
 </body>
 </html>

@@ -25,17 +25,20 @@ Route::get('/specific',[APIHandler::class, 'specificDate']);
 
 Route::get('/specificWithTime',[APIHandler::class, 'specificDateAndTime']); 
 
-Route::post('/reserveDate',[APIHandler::class, 'reserveDate']); 
 
 Route::get('/checkIfLoggedIn',[APIHandler::class, 'checkIfLoggedIn']); 
 
-Route::get('/myReservations',[APIHandler::class, 'myReservations']); 
 
-Route::get('/specificReservation',[APIHandler::class, 'specificReservation']); 
 
-Route::get('/userInfo',[APIHandler::class, 'userInfo']); 
 
 Route::get('/cacheTest',[APIHandler::class, 'cacheTest']); 
+Route::middleware(['react'])->group(function () {
+    
+    Route::get('/userInfo',[APIHandler::class, 'userInfo']); 
+    Route::post('/reserveDate',[APIHandler::class, 'reserveDate']); 
+    Route::get('/myReservations',[APIHandler::class, 'myReservations']); 
+    Route::get('/specificReservation',[APIHandler::class, 'specificReservation']); 
 
+});
 
 require __DIR__.'/auth.php';
