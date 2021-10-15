@@ -46,7 +46,6 @@
             });
                 }
         function reserveDate(date,time){
-            console.log(user)
             $.ajax({
                 dataType: 'json',
                 url: '/reserveDate',
@@ -168,13 +167,13 @@
     <br>
     <br>
     <button onclick="allReservations();">ALL DATES</button>
-    <button onclick="SpecificDate('2021-10-15');">SPECIFIC DATE</button>
-    <button onclick="SpecificTermin('2021-10-15',12);">SPECIFIC DATE AND TIME</button>
-        <button onclick="reserveDate('2021-10-15',12);">RESERVE DATE</button>
+    <button onclick="SpecificDate('2021-10-20');">SPECIFIC DATE</button>
+    <button onclick="SpecificTermin('2021-10-20',12);">SPECIFIC DATE AND TIME</button>
+        <button onclick="reserveDate('2021-10-20',12);">RESERVE DATE</button>
     <br>
     <br>
         <button onclick="myReservations();">My Reservations</button>
-        <button onclick="specificReservation('2021-10-15',12);">Specific Reservation</button>
+        <button onclick="specificReservation('2021-10-20',12);">Specific Reservation</button>
     <h1>HELLO</h1>
 </body>
 </html>
