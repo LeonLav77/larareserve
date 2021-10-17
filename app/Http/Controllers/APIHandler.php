@@ -18,10 +18,6 @@ class APIHandler extends Controller
         });
         return json_encode($dates);
     }
-    public function cacheTest(){
-        $value = Cache::get('allDates');
-        return json_encode($value);
-    }
     public function specificDate(Request $request){
         $date = $request->date;
         $dates = Cache::rememberForever($date, function () use($date) {
@@ -45,16 +41,20 @@ class APIHandler extends Controller
             Cache::forget($date);
         }
         $thatDate = Day::where('date', $date)->where('vrijeme', $time);
-        $reservation = Reservation::insert([
+        if($thatDate->select('status')->get()[0]['status'] == 'occupied'){
+            //return json_encode('OCCUPIED');
+        }
+        $reservation = Reservation::insertGetId([
             'user_id' => Auth::user()->id,
             'day_id' => $thatDate->select('id')->get()[0]['id'],
             'date' => $date,
             'time' => $time,
             'created_at' => now(),
         ]);
-        $dates = $thatDate->update(['status' => 'occupied','reservationID'=> 1]);
+        $dates = $thatDate->update(['status' => 'occupied','reservationID'=> $reservation]);
         return json_encode('success');
     }
+    
     public function checkIfLoggedIn(){
         if(Auth::check()){
             return json_encode("LOGGED IN");
