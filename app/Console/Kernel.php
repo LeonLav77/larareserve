@@ -30,24 +30,48 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
         $schedule->call(function () {
             DB::table('test')->delete();
+            // Day::where('date',Carbon::now()->format('Y-m-d'))->delete();
+            $this->todaysDate = Carbon::now()->format('Y-m-d');
+            // PROMJENIT U EXPIRYDATE
+            Day::where('date',$this->todaysDate)
+                ->each(function ($oldRecord) {
+                $newRecord = $oldRecord->replicate();
+                $newRecord->setTable('outdateddays');
+                $newRecord->expiryDate = Carbon::parse($this->todaysDate)->addMonths(2);
+                $newRecord->save();
+            
+                $oldRecord->delete();
+              });
+            // PROMJENIT U EXPIRYDATE
+            DB::table('outdatedDays')->where('date',$this->todaysDate)->delete();
+            if(Day::latest('created_at')->first() == null){
+                DB::table('days')->insert([
+                    'date' => $this->todaysDate,
+                    'expirydate' => Carbon::now()->addMonths(4)->format('Y-m-d'),
+                    'vrijeme' => 8,
+                    'status' => 'free',
+                    'created_at' => now()
+                ]);
+            }
             for ($i = 0; $i < 8; $i++) {
-                sleep(1);
-                $this->lastRecord = Day::latest('created_at')->first();
+                $this->lastRecord = Day::latest()->first();
                 $this->newTime = $this->lastRecord->vrijeme + 2;
+                $this->today = $this->lastRecord->date;
+                $this->expiryDate = Carbon::parse($this->lastRecord->date)->addMonths(4);
                 $this->newDate = Carbon::parse($this->lastRecord->date)->addDay();
                 $this->newDate = $this->newDate->format('Y-m-d');
-    
-                $this->today = $this->lastRecord->date;
                 if($this->newTime == 24) {
                     $this->newTime = 8;
                     $this->today = $this->newDate;
                 }
                 DB::table('days')->insert([
                     'date' => $this->today,
+                    'expiryDate' => $this->expiryDate,
                     'vrijeme' => $this->newTime,
                     'status' => 'free',
                     'created_at' => now()
                 ]);
+                sleep(1);
                 
             }
 
