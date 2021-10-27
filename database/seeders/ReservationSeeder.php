@@ -18,10 +18,10 @@ class ReservationSeeder extends Seeder
     public function run(Faker $faker)
     {
         for($i = 1; $i <= 10; $i++) {
-            sleep(1);
-                DB::table('days')->insert([
+                DB::table('reservations')->insert([
                     'date' => Carbon::now()->addDays($i)->format('Y-m-d'),
-                    'time' => 8,
+                    'time' => '8',
+                    'expiryDate' =>Carbon::now()->addMonths(2)->format('Y-m-d'),
                     'user_id' => 1,
                     'day_id' => $i,
                     'created_at' => now()

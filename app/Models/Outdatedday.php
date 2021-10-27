@@ -2,15 +2,14 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\Reservation;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Day extends Model
+class Outdatedday extends Model
 {
     use HasFactory;
     public function reservation(){
         return $this->hasOne(Reservation::class,'day_id','reservationID');
+
     }
 }

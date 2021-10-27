@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Day;
 use App\Models\User;
 use App\Models\Reservation;
@@ -28,7 +29,7 @@ class APIHandler extends Controller
     public function specificDateAndTime(Request $request){
         $date = $request->date;
         $time = $request->time;
-        $dates = Day::where('date', $date)->where('vrijeme', $time)->get();
+        $dates = Day::where('date', $date)->where('time', $time)->get();
         return json_encode($dates);
     }
     public function reserveDate(Request $request){
@@ -40,14 +41,15 @@ class APIHandler extends Controller
         if (Cache::has($date)) {
             Cache::forget($date);
         }
-        $thatDate = Day::where('date', $date)->where('vrijeme', $time);
+        $thatDate = Day::where('date', $date)->where('time', $time);
         if($thatDate->select('status')->get()[0]['status'] == 'occupied'){
-            //return json_encode('OCCUPIED');
+            return json_encode('OCCUPIED');
         }
         $reservation = Reservation::insertGetId([
             'user_id' => Auth::user()->id,
             'day_id' => $thatDate->select('id')->get()[0]['id'],
             'date' => $date,
+            'date' => Carbon::parse($date)->addMonths(2),
             'time' => $time,
             'created_at' => now(),
         ]);

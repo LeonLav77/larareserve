@@ -16,8 +16,7 @@ class CreateDaysTable extends Migration
         Schema::create('days', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->date('expiryDate');
-            $table->integer('vrijeme');
+            $table->integer('time');
             $table->string('status');
             $table->foreignId('reservationID')->nullable();
             $table->timestamps();

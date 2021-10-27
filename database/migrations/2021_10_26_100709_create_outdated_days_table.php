@@ -16,8 +16,8 @@ class CreateOutdatedDaysTable extends Migration
         Schema::create('outdatedDays', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->date('expiryDate');
-            $table->integer('vrijeme');
+            $table->date('expiryDate')->nullable();
+            $table->integer('time');
             $table->string('status');
             $table->foreignId('reservationID')->nullable();
             $table->timestamps();

@@ -18,6 +18,7 @@ class CreateReservationsTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('day_id');
             $table->date('date');
+            $table->date('expiryDate')->nullable();
             $table->integer('time');
             $table->timestamps();
         });

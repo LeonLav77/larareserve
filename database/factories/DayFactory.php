@@ -25,7 +25,7 @@ class UserFactory extends Factory
         $this->today = Carbon::today();
         return [
             'name' => $this->today,
-            'vrijeme' => 5,
+            'time' => 5,
             'status' => "rezervirano"
         ];
     }

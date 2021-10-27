@@ -17,7 +17,7 @@ class DaySeeder extends Seeder
     public function entry(){
             $this->lastRecord = Day::latest()->first();
 
-            $this->newTime = $this->lastRecord->vrijeme + 2;
+            $this->newTime = $this->lastRecord->time + 2;
 
             $this->newDate = Carbon::parse($this->lastRecord->date)->addDay();
             $this->newDate = $this->newDate->format('Y-m-d');
@@ -32,8 +32,7 @@ class DaySeeder extends Seeder
 
             DB::table('days')->insert([
                 'date' => $this->today,
-                'expiryDate' => $this->expiryDate,
-                'vrijeme' => $this->newTime,
+                'time' => $this->newTime,
                 'status' => 'free',
                 'created_at' => now()
             ]);
@@ -41,13 +40,12 @@ class DaySeeder extends Seeder
     }
     public function run()
     {
-        for($i = 1; $i <= 10; $i++) {
+        for($i = 1; $i <= 960; $i++) {
             sleep(1);
             if(Day::latest()->first() == null){
                 DB::table('days')->insert([
                     'date' => Carbon::now()->format('Y-m-d'),
-                    'expiryDate' => Carbon::now()->addMonths(4)->format('Y-m-d'),
-                    'vrijeme' => 8,
+                    'time' => 8,
                     'status' => 'free',
                     'created_at' => now()
                 ]);
