@@ -1,11 +1,11 @@
 <?php
-
 namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+
 class UserFactory extends Factory
 {
     /**
@@ -26,7 +26,7 @@ class UserFactory extends Factory
         return [
             'name' => $this->today,
             'time' => 5,
-            'status' => "rezervirano"
+            'status' => 'rezervirano'
         ];
     }
 }

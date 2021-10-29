@@ -8,8 +8,6 @@
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  */
-
-
 namespace App\Models{
 /**
  * App\Models\Day
@@ -33,9 +31,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Day whereTime($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Day whereUpdatedAt($value)
  */
-	class Day extends \Eloquent {}
+    class Day extends \Eloquent
+    {
+    }
 }
-
 namespace App\Models{
 /**
  * App\Models\Outdatedday
@@ -61,9 +60,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Outdatedday whereTime($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Outdatedday whereUpdatedAt($value)
  */
-	class Outdatedday extends \Eloquent {}
+    class Outdatedday extends \Eloquent
+    {
+    }
 }
-
 namespace App\Models{
 /**
  * App\Models\Reservation
@@ -90,9 +90,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Reservation whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Reservation whereUserId($value)
  */
-	class Reservation extends \Eloquent {}
+    class Reservation extends \Eloquent
+    {
+    }
 }
-
 namespace App\Models{
 /**
  * App\Models\User
@@ -124,6 +125,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
-	class User extends \Eloquent {}
+    class User extends \Eloquent
+    {
+    }
 }
-

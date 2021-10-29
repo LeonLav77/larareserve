@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use App\Models\User;
@@ -10,7 +9,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Day extends Model
 {
     use HasFactory;
-    public function reservation(){
-        return $this->hasOne(Reservation::class,'day_id','reservationID');
+
+    public function reservation()
+    {
+        return $this->hasOne(Reservation::class, 'day_id', 'reservationID');
     }
 }

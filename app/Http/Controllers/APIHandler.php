@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
@@ -12,6 +11,7 @@ use Illuminate\Support\Facades\Cache;
 
 class APIHandler extends Controller
 {
+    //C:/Users/Leon/Desktop/calender/larareserve/app/Http/Controllers/APIHandler.php
     public function AllDates()
     {
         // $dates = Cache::remember('allDates', 50, function () {
@@ -20,6 +20,7 @@ class APIHandler extends Controller
         });
         return json_encode($dates);
     }
+
     public function specificDate(Request $request)
     {
         $date = $request->date;
@@ -28,6 +29,7 @@ class APIHandler extends Controller
         });
         return json_encode($dates);
     }
+
     public function specificDateAndTime(Request $request)
     {
         $date = $request->date;
@@ -35,6 +37,7 @@ class APIHandler extends Controller
         $dates = Day::where('date', $date)->where('time', $time)->get();
         return json_encode($dates);
     }
+
     public function reserveDate(Request $request)
     {
         $date = $request->date;
@@ -56,21 +59,23 @@ class APIHandler extends Controller
             'time' => $time,
             'created_at' => now(),
         ]);
-        $dates = $thatDate->update(['status' => 'occupied','reservationID'=> $reservation]);
+        $dates = $thatDate->update(['status' => 'occupied', 'reservationID' => $reservation]);
         return json_encode('success');
     }
-    
+
     public function checkIfLoggedIn()
     {
         if (Auth::check()) {
-            return json_encode("LOGGED IN");
+            return json_encode('LOGGED IN');
         }
-        return json_encode("NOT LOGGED IN");
+        return json_encode('NOT LOGGED IN');
     }
+
     public function myReservations()
     {
         return json_encode(Auth::user()->reservations);
     }
+
     public function specificReservation(request $request)
     {
         $date = $request->date;
@@ -78,6 +83,7 @@ class APIHandler extends Controller
         $reservation = Reservation::where('date', $date)->where('time', $time)->get();
         return json_encode($reservation);
     }
+
     public function userInfo(request $request)
     {
         $user = Auth::user();

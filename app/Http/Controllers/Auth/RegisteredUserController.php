@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -50,6 +49,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return json_encode("success");
+        return json_encode('success');
     }
 }

@@ -18,6 +18,7 @@
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
         "barryvdh/laravel-ide-helper": "^2.10",
+        "brainmaestro/composer-git-hooks": "^2.8",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "^1.4",
@@ -40,18 +41,31 @@
         }
     },
     "scripts": {
+        "post-install-cmd": [
+            "cghooks add --ignore-lock"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi"
+            "@php artisan vendor:publish --tag=laravel-assets --ansi",
+            "cghooks update"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "check-format": [
+            "php-cs-fixer fix . --dry-run"
+        ],
+        "format": [
+            "php-cs-fixer fix ."
+        ],
+        "analyse": [
+            "phpstan analyse --memory-limit=2G"
         ]
     },
     "extra": {
@@ -62,7 +76,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "php-cs-fixer.onsave": true,
+        "php-cs-fixer.formatHtml": true,
+        "php-cs-fixer.config": ".php-cs-fixer.php;.php-cs-fixer.dist.php;.php_cs;.php_cs.dist"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

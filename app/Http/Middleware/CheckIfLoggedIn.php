@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
@@ -17,8 +16,8 @@ class CheckIfLoggedIn
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!(Auth::check())){
-            return response("Not Logged in");
+        if (!(Auth::check())) {
+            return response('Not Logged in');
         }
         return $next($request);
     }
