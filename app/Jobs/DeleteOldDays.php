@@ -15,7 +15,11 @@ use Illuminate\Contracts\Queue\ShouldBeUnique;
 class DeleteOldDays implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
+    public $todaysDate;
+    public $lastRecord;
+    public $newTime;
+    public $today;
+    public $newDate;
     /**
      * Create a new job instance.
      *
