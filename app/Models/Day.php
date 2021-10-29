@@ -10,6 +10,7 @@ class Day extends Model
 {
     use HasFactory;
     // for change
+    // for more change
     public function reservation()
     {
         return $this->hasOne(Reservation::class, 'day_id', 'reservationID');
