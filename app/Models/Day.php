@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Day extends Model
 {
     use HasFactory;
-
+    // for change
     public function reservation()
     {
         return $this->hasOne(Reservation::class, 'day_id', 'reservationID');
