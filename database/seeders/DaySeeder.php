@@ -13,6 +13,12 @@ class DaySeeder extends Seeder
      *
      * @return void
      */
+    public $lastRecord;
+    public $newTime;
+    public $newDate;
+    public $expiryDate;
+    public $today;
+
     public function entry()
     {
         $this->lastRecord = Day::latest()->first();

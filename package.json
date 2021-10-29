@@ -8,8 +8,8 @@
         "hot": "mix watch --hot",
         "prod": "npm run production",
         "production": "mix --production",
-        "check-format": "prettier --check resources/assets/js/**/*.js",
-        "format": "prettier --write resources/assets/js/**/*.js"
+        "check-format": "prettier --check resources/",
+        "format": "prettier --write resources/"
     },
     "devDependencies": {
         "@babel/preset-react": "^7.13.13",
@@ -25,6 +25,7 @@
         "lodash": "^4.17.19",
         "postcss": "^8.2.13",
         "postcss-import": "^14.0.1",
+        "prettier": "2.4.1",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "tailwindcss": "^2.1.2"
