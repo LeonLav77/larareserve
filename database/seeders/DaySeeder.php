@@ -13,13 +13,13 @@ class DaySeeder extends Seeder
      *
      * @return void
      */
-    public $lastRecord;
-    public $newTime;
-    public $newDate;
-    public $expiryDate;
-    public $today;
+    public object $lastRecord;
+    public string $newTime;
+    public object $newDate;
+    public string $expiryDate;
+    public string $today;
 
-    public function entry()
+    public function entry() : void
     {
         $this->lastRecord = Day::latest()->first();
 
@@ -44,7 +44,7 @@ class DaySeeder extends Seeder
         ]);
     }
 
-    public function run()
+    public function run() : void
     {
         for ($i = 1; $i <= 960; $i++) {
             sleep(1);

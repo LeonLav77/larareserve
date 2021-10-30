@@ -76,7 +76,9 @@
             "dont-discover": []
         },
         "hooks": {
-            "pre-commit": "./pre-commit.sh"
+            "pre-commit": [
+                "./pre-commit.sh"
+            ]
         }
     },
     "config": {

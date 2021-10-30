@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Day extends Model
 {
     use HasFactory;
-    // for change
+
     // for more change
     public function reservation()
     {
