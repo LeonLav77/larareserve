@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return json_encode('success');
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
@@ -53,6 +53,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return json_encode('success');
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 }

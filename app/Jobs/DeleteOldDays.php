@@ -17,7 +17,7 @@ class DeleteOldDays implements ShouldQueue
     public $todaysDate;
     public $lastRecord;
     public $newTime;
-    public $today;
+    public string $today;
     public $newDate;
 
     /**

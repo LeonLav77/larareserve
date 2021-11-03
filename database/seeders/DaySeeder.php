@@ -13,9 +13,9 @@ class DaySeeder extends Seeder
      *
      * @return void
      */
-    public object $lastRecord;
-    public string $newTime;
-    public object $newDate;
+    public $lastRecord;
+    public $newTime;
+    public $newDate;
     public string $expiryDate;
     public string $today;
 
@@ -25,8 +25,7 @@ class DaySeeder extends Seeder
 
         $this->newTime = $this->lastRecord->time + 2;
 
-        $this->newDate = Carbon::parse($this->lastRecord->date)->addDay();
-        $this->newDate = $this->newDate->format('Y-m-d');
+        $this->newDate = Carbon::parse($this->lastRecord->date)->addDay()->format('Y-m-d');
         $this->expiryDate = Carbon::parse($this->lastRecord->date)->addMonths(4);
 
         $this->today = $this->lastRecord->date;

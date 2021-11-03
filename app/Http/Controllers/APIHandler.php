@@ -12,33 +12,33 @@ use Illuminate\Support\Facades\Cache;
 class APIHandler extends Controller
 {
     //C:/Users/Leon/Desktop/calender/larareserve/app/Http/Controllers/APIHandler.php
-    public function AllDates()
+    public function AllDates() : string
     {
         // $dates = Cache::remember('allDates', 50, function () {
         $dates = Cache::rememberForever('allDates', function () {
             return Day::all();
         });
-        return json_encode($dates);
+        return json_encode($dates) ?: '';
     }
 
-    public function specificDate(Request $request)
+    public function specificDate(Request $request) : string
     {
         $date = $request->date;
         $dates = Cache::rememberForever($date, function () use ($date) {
             return Day::where('date', $date)->get();
         });
-        return json_encode($dates);
+        return json_encode($dates) ?: '';
     }
 
-    public function specificDateAndTime(Request $request)
+    public function specificDateAndTime(Request $request) : string
     {
         $date = $request->date;
         $time = $request->time;
         $dates = Day::where('date', $date)->where('time', $time)->get();
-        return json_encode($dates);
+        return json_encode($dates) ?: '';
     }
 
-    public function reserveDate(Request $request)
+    public function reserveDate(Request $request) : string
     {
         $date = $request->date;
         $time = $request->time;
@@ -50,7 +50,7 @@ class APIHandler extends Controller
         }
         $thatDate = Day::where('date', $date)->where('time', $time);
         if ($thatDate->select('status')->get()[0]['status'] == 'occupied') {
-            return json_encode('OCCUPIED');
+            return json_encode('OCCUPIED') ?: '';
         }
         $reservation = Reservation::insertGetId([
             'user_id' => Auth::user()->id,
@@ -60,33 +60,33 @@ class APIHandler extends Controller
             'created_at' => now(),
         ]);
         $dates = $thatDate->update(['status' => 'occupied', 'reservationID' => $reservation]);
-        return json_encode('success');
+        return json_encode('success') ?: '';
     }
 
-    public function checkIfLoggedIn()
+    public function checkIfLoggedIn() : string
     {
         if (Auth::check()) {
-            return json_encode('LOGGED IN');
+            return json_encode('LOGGED IN') ?: '';
         }
-        return json_encode('NOT LOGGED IN');
+        return json_encode('NOT LOGGED IN') ?: '';
     }
 
-    public function myReservations()
+    public function myReservations() : string
     {
-        return json_encode(Auth::user()->reservations);
+        return json_encode(Auth::user()->reservations) ?: '';
     }
 
-    public function specificReservation(request $request)
+    public function specificReservation(request $request) : string
     {
         $date = $request->date;
         $time = $request->time;
         $reservation = Reservation::where('date', $date)->where('time', $time)->get();
-        return json_encode($reservation);
+        return json_encode($reservation) ?: '';
     }
 
-    public function userInfo(request $request)
+    public function userInfo(request $request) : string
     {
         $user = Auth::user();
-        return json_encode($user);
+        return json_encode($user) ?: '';
     }
 }

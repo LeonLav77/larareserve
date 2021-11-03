@@ -17,17 +17,16 @@ use App\Http\Controllers\IndexController;
 |
 */
 
-Route::get('/', [IndexController::class, 'Index']);
+Route::get('/', [IndexController::class, 'Index'])->name('index');
 
-Route::get('/all', [APIHandler::class, 'AllDates']);
+Route::get('/all', [APIHandler::class, 'AllDates'])->name('all');
 
-Route::get('/specific', [APIHandler::class, 'specificDate']);
+Route::get('/specific', [APIHandler::class, 'specificDate'])->name('specific');
 
-Route::get('/specificWithTime', [APIHandler::class, 'specificDateAndTime']);
+Route::get('/specificWithTime', [APIHandler::class, 'specificDateAndTime'])->name('specificWithTime');
 
-Route::get('/checkIfLoggedIn', [APIHandler::class, 'checkIfLoggedIn']);
+Route::get('/checkIfLoggedIn', [APIHandler::class, 'checkIfLoggedIn'])->name('checkIfLoggedIn');
 
-Route::get('/cacheTest', [APIHandler::class, 'cacheTest']);
 Route::middleware(['react'])->group(function () {
     Route::get('/userInfo', [APIHandler::class, 'userInfo']);
     Route::post('/reserveDate', [APIHandler::class, 'reserveDate']);
@@ -36,3 +35,4 @@ Route::middleware(['react'])->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/reactAuth.php';

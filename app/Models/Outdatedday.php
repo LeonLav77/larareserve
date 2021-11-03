@@ -8,7 +8,7 @@ class Outdatedday extends Model
 {
     use HasFactory;
 
-    public function reservation()
+    public function reservation() : object
     {
         return $this->hasOne(Reservation::class, 'day_id', 'reservationID');
     }

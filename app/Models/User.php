@@ -11,7 +11,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function reservations()
+    public function reservations() : object
     {
         return $this->hasMany(Reservation::class);
     }

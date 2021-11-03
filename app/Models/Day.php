@@ -11,7 +11,7 @@ class Day extends Model
     use HasFactory;
 
     // for more change
-    public function reservation()
+    public function reservation() : object
     {
         return $this->hasOne(Reservation::class, 'day_id', 'reservationID');
     }

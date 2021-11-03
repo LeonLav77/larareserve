@@ -145,35 +145,71 @@
                 }
             });
         }
-        function cacheTest(){
-            $.ajax({
-                dataType: 'json',
-                url: '/cacheTest',
-                type: 'get',
-                success: function(response) {
-                    console.log(response)
+
+
+        function ajaxReactLogin(email,password){
+                $.ajax({
+                    dataType: 'json',
+                    url: '/react/login',
+                    data:{
+                        'email':email,
+                        'password':password
+                    },
+                    type: 'post',
+                    success: function(response) {
+                        console.log(response)
                 }
-            });
-        }
+                });
+            }
+            function reactLogout() {
+                $.ajax({
+                    dataType: 'json',
+                    url: '/react/logout',
+                    type: 'post',
+                    success: function(response) {
+                        console.log(response)
+                    }
+                    });
+                }
+            
+        function ajaxReactRegister(email,password,name){
+            $.ajax({
+                        dataType: 'json',
+                        url: '/react/register',
+                        data: {
+                            'email':email,
+                            'password':password,
+                            'password_confirmation':password,
+                            'name':name
+                        },
+                        type: 'post',
+                        success: function(response) {
+                            console.log(response)
+                        }
+                    });
+                }
     </script>
 </head>
 <body>
     <button onclick="checkIfLoggedIn();">isLoggedIn</button>
     <button onclick="userInfo();">User Info</button>
     <button onclick="ajaxLogin('leonlav77@gmail.com','password');">Login</button>
-    <button onclick="cacheTest();">CACHE TESTS</button>
     <button onclick="ajaxRegister('leonlav77@gmail.com','password','leki');">Register</button>
     <button onclick="logout();">Logout</button>
     <br>
     <br>
     <button onclick="allReservations();">ALL DATES</button>
-    <button onclick="SpecificDate('2021-10-20');">SPECIFIC DATE</button>
-    <button onclick="SpecificTermin('2021-10-20',12);">SPECIFIC DATE AND TIME</button>
-        <button onclick="reserveDate('2021-10-20',12);">RESERVE DATE</button>
+    <button onclick="SpecificDate('2021-11-20');">SPECIFIC DATE</button>
+    <button onclick="SpecificTermin('2021-11-20',12);">SPECIFIC DATE AND TIME</button>
+        <button onclick="reserveDate('2021-11-20',12);">RESERVE DATE</button>
     <br>
     <br>
         <button onclick="myReservations();">My Reservations</button>
-        <button onclick="specificReservation('2021-10-20',12);">Specific Reservation</button>
-    <h1>HELLO</h1>
+        <button onclick="specificReservation('2021-11-20',12);">Specific Reservation</button>
+    <br>
+    <br>
+    <button onclick="ajaxReactLogin('leonlav77@gmail.com','password');">React Login</button>
+    <button onclick="ajaxReactRegister('leonlav77@gmail.com','password','leki');">React Register</button>
+    <button onclick="reactLogout();">React Logout</button>
 </body>
 </html>

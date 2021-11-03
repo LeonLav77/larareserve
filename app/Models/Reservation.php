@@ -8,12 +8,12 @@ class Reservation extends Model
 {
     use HasFactory;
 
-    public function user()
+    public function user() : object
     {
         return $this->belongsTo(User::class);
     }
 
-    public function day()
+    public function day() : object
     {
         return $this->belongsTo(Day::class);
     }
